@@ -24,3 +24,11 @@ System verilog test bench contain TEST TOP
     after computation DUT send the data back to the MONITOR ---> MONITOR send the data to the SCORE BOARD through transaction(uses the MAIL BOX concept[data from the monitor
     is put into the MAIL BOX]).
 */
+
+
+// Test bench explanation
+/*
+  - Component - 1: testbench.sv
+      - it contain test, interface, DUT
+      - Inside the test we are passing the interface handle.
+*/
