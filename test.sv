@@ -1,7 +1,7 @@
 // Inside this the environment block is going to be executed
 
 // Including the environment component
-`include environment.sv;
+`include "environment.sv"
 
 program test(intf intff);
   environment env;
