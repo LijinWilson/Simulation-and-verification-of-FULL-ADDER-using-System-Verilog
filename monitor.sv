@@ -4,10 +4,18 @@ class monitor;
   virtual intf vif;
   
 //   MAILBOX for communication between the monitor and scoreboard
-  mailbox mon2scb;
+
+//   defining the mail box
+// Mailbox for transaction transfer between Generator and Driver.
+// Typed mailbox.
+// Without #(transaction), the compiler uses the default mailbox(object)
+// and may issue a mailbox specialization warning.
+//   WARNING VCP2947
+// Default parameter values used for class std::mailbox specialization.
+//   mailbox #(transaction) mon2scb;
   
 //   Constructor
-  function new(virtual intf vif, mailbox mon2scb);
+  function new(virtual intf vif, mailbox #(transaction) mon2scb);
     this.vif = vif;
     this.mon2scb = mon2scb;
   endfunction
@@ -18,7 +26,7 @@ class monitor;
       #1; // give 1 time delay to sample the data
     begin
       transaction trans;
-      trans.new();	// creating the object of the transaction class
+      trans = new();	// creating the object of the transaction class
       
       // Sampling
       trans.a = vif.a;
