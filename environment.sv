@@ -3,11 +3,15 @@
 
 // Include all the sub components
 
-`include transaction.sv;
-`include generator.sv;
-`include driver.sv;
-`include monitor.sv;
-`include scoreboard.sv;
+// Environment Class
+
+// Include all the sub components
+
+`include "transaction.sv"
+`include "generator.sv"
+`include "driver.sv"
+`include "monitor.sv"
+`include "scoreboard.sv"
 
 // environment logic
 class environment;
@@ -19,8 +23,12 @@ class environment;
   scoreboard scb;
   
 //   defining the mail box
-  mailbox gen2drv;
-  mailbox mon2scb;
+// Mailbox for transaction transfer between Generator and Driver.
+// Typed mailbox.
+// Without #(transaction), the compiler uses the default mailbox(object)
+// and may issue a mailbox specialization warning.
+  mailbox #(transaction) gen2drv;
+  mailbox #(transaction) mon2scb;
   
 //   defining the interface
   virtual intf vif;
@@ -41,12 +49,10 @@ class environment;
 // Main Logic
   task test_run();
     fork // run all component in parallel, it will come out of the fork after all the component get exicuted
-      begin
         gen.main();
-    	  drv.main();
-    	  mon.main();
-    	  scb.main();
-      end
+    	drv.main();
+    	mon.main();
+    	scb.main();
     join
   endtask
   
