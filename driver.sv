@@ -10,11 +10,16 @@ class driver;
 
 //   Since interface is static type, class in dynamic type. making the interface dynamic.
   virtual intf vif;
+//   defining the mail box
+// Mailbox for transaction transfer between Generator and Driver.
+// Typed mailbox.
+// Without #(transaction), the compiler uses the default mailbox(object)
+// and may issue a mailbox specialization warning.
   
-  mailbox gen2drv;
+  mailbox #(transaction) gen2drv;
   
 //   Constructor
-  function new(virtual intf vif, mailbox gen2drv);
+  function new(virtual intf vif, mailbox #(transaction) gen2drv);
     this.vif = vif;
     this.gen2drv = gen2drv;
   endfunction
