@@ -7,10 +7,16 @@
 class scoreboard;
 
 //   MAIL BOX to collect the data from the DUT to monitor
-  mailbox mon2scb;
+// Typed mailbox.
+// Without #(transaction), the compiler uses the default mailbox(object)
+// and may issue a mailbox specialization warning.
+// Mailbox for transaction transfer between Generator and Driver.
+
+mailbox #(transaction) gen2drv;
+mailbox #(transaction) mon2scb;
   
 //   Constructor
-  function new(mailbox mon2scb);
+  function new(mailbox #(transaction) mon2scb);
     this.mon2scb = mon2scb;
   endfunction
   
@@ -25,15 +31,15 @@ class scoreboard;
         trans.display("Score Board Signals");
         
 //         Validation cases/logic
-        if(((trans.a ^ trans.b ^ trans.c) == trans.sum) && ((trans.a & trans.b)|(trans.b & trans.c) | (trans.a & trans.c) == trans.carry))
+        if(((trans.a ^ trans.b ^ trans.c) == trans.sum) && (((trans.a & trans.b)|(trans.b & trans.c) | (trans.a & trans.c)) == trans.carry))
           begin
-            $display("**************** PASS ****************")
+            $display("**************** PASS ****************");
           end
         else
           begin
             $display("**************** FAIL ****************");
           end
-        $display("///////////////////// TRANSACTION DONE /////////////////////");.
+        $display("///////////////////// TRANSACTION DONE /////////////////////");
       end
   endtask
   
