@@ -40,7 +40,7 @@ class environment;
   
 // Main Logic
   task test_run();
-    fork // run all component in parallel
+    fork // run all component in parallel, it will come out of the fork after all the component get exicuted
       begin
         gen.main();
     	  drv.main();
