@@ -31,4 +31,6 @@ System verilog test bench contain TEST TOP
   - Component - 1: testbench.sv
       - it contain test, interface, DUT
       - Inside the test we are passing the interface handle.
+  -  Component - 2: Environment.sv
+      -  It contains Generator, transaction, Driver, Monitor, ScoreBoard.  
 */
