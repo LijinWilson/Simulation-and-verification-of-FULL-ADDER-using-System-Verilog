@@ -47,7 +47,7 @@ The project is designed to help understand the **fundamentals of Design Verifica
 # 🏗️ Verification Architecture
 
 <p align="center">
-    <img src="images/architecture.png" alt="Verification Architecture" width="1000">
+    <img src="sv_simple_tb_with_scb.png" alt="Verification Architecture" width="1000">
 </p>
 
 The verification environment consists of the following components:
@@ -102,11 +102,6 @@ Random Transaction
 
 ```
 Simulation-and-verification-of-FULL-ADDER-using-System-Verilog
-│
-├── images/
-│   ├── architecture.png
-│   ├── waveform.png              (Optional)
-│   └── console_output.png        (Optional)
 │
 ├── design.sv
 ├── interface.sv
