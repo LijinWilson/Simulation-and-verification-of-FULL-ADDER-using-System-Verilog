@@ -13,14 +13,20 @@ class generator;
   transaction trans;
   
 //   MAIL BOX between the generator class and driver.
-  mailbox gen2drv;
+//   defining the mail box
+// Mailbox for transaction transfer between Generator and Driver.
+// Typed mailbox.
+// Without #(transaction), the compiler uses the default mailbox(object)
+// and may issue a mailbox specialization warning.
+  mailbox #(transaction) gen2drv;
   
 //   CONSTRUCTOR
 //   When we call the constructor, it will create memory for generator class and allocate memory for variable and initialize with default values.
-  function new(mailbox gen2drv);
+  function new (mailbox #(transaction) gen2drv);
     begin
       this.gen2drv = gen2drv;
     end
+  endfunction
     
 //     TASK to generate the random values and put it inside th transaction class and to display and put those value inside the mail box
     
